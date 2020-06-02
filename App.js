@@ -6,6 +6,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
+import {globalStyles} from './styles/global';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
+      <View style={globalStyles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
@@ -28,9 +29,3 @@ export default function App(props) {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

@@ -2,8 +2,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
+import TabBarIcon2 from '../components/TabBarIcon2';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import BuildingsScreen from '../screens/BuildingsScreen';
+import StatsScreen from '../screens/StatsScreen';
+import ChatsScreen from '../screens/ChatsScreen';
+import TenantsScreen from '../screens/ChatsScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -16,22 +20,47 @@ export default function BottomTabNavigator({ navigation, route }) {
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+       <BottomTab.Screen
+        name="Tenants"
+        component={TenantsScreen}
+        options={{
+          title: 'Tenants',
+          tabBarIcon: ({ focused }) => <TabBarIcon2 focused={focused} name="account-group" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Buildings"
+        component={BuildingsScreen}
+        options={{
+          title: 'Buildings',
+          tabBarIcon: ({ focused }) => <TabBarIcon2 focused={focused} name="home-city" />,
+        }}
+      />
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Welcome',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="Chats"
+        component={ChatsScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Chats',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-chatboxes" />,
         }}
       />
+      <BottomTab.Screen
+        name="Stats"
+        component={StatsScreen}
+        options={{
+          title: 'Stats',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="ios-stats" />,
+        }}
+      />
+      
     </BottomTab.Navigator>
   );
 }
@@ -41,8 +70,14 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Rental';
+    case 'Buildings':
+      return 'Check your Buildings';
+    case 'Stats':
+      return 'Statistics';
+    case 'Chats':
+      return 'Chats';
+    case 'Tenants':
+      return 'Tenants';
   }
 }
